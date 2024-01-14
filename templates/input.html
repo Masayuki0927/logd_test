@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>ログイン画面</title>
+    <style>
+        .form-input {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>ログイン画面</h1>
     <div>
         <form action="/login" method="post">
-            <input type="text" name="username" placeholder="ユーザー名">
-            <input type="text" name="password" placeholder="パスワード">
-            <input type="submit" value="送信">
+            <input class="form-input" type="text" name="username" placeholder="ユーザー名"><br>
+            <input class="form-input" type="text" name="password" placeholder="パスワード"><br>
+            <input class="form-input" type="submit" value="送信">
         </form>
     </div>
     <div>

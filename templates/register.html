@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <style>
+        .form-input {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>新規アカウント作成</h1>
     <div>
         <form action="/signup" method="post">
-            <input type="text" name="username" placeholder="ユーザー名">
-            <input type="text" name="password" placeholder="パスワード">
+            <input class="form-input" type="text" name="username" placeholder="ユーザー名"><br>
+            <input class="form-input" type="password" name="password" placeholder="パスワード"><br>
+            <input class="form-input" type="password" name="confirm_password" required placeholder="パスワードを確認"><br>
             <input type="submit" value="送信">
         </form>
     </div>

@@ -1,0 +1,14 @@
+<h1>mypageです</h1>
+
+{{ user.username }}
+{{ user.id }}
+
+<ul>
+    {% for comment in comments %}
+        <li>
+            {{ comment.user_id }}
+            {{ comment.content }}
+            {{ comment.date }}
+        </li>
+    {% endfor %}
+</ul>
