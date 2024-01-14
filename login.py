@@ -3,15 +3,18 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
 from datetime import datetime
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'  # SQLiteデータベースのファイル名
 app.config['SECRET_KEY'] = secrets.token_hex(16) 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
+    email_address = db.Column(db.String(120), unique=True, nullable=True)
     password_hash = db.Column(db.String(128), nullable=False)
     comments = db.relationship('Comment', backref='user', lazy=True)
 
@@ -90,6 +93,14 @@ def mypage():
     for comment in comments:
         print(comment.content)
     return render_template('mypage.html', user=user, comments=comments)
+
+@app.route('/user_detail' , methods=["post"])
+def user_detail():
+    email_address = request.form.get('email_address')
+    existing_user = User.query.filter_by(username=session['username']).first()
+    existing_user.email_address = email_address
+    db.session.commit()
+    return redirect(url_for('mypage'))
 
 # with app.app_context():
 #     db.create_all()

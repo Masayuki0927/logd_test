@@ -2,6 +2,14 @@
 
 {{ user.username }}
 {{ user.id }}
+{{ user.email_address  }}
+
+<div>
+    <form action="/user_detail" method="post">
+        <input class="form-input" type="text" name="email_address" placeholder="メールアドレス"><br>
+        <input class="form-input" type="submit" value="送信">
+    </form>
+</div>
 
 <ul>
     {% for comment in comments %}
